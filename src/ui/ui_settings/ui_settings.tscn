@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://xdnqt2qq16ex"]
+
+[ext_resource type="Script" uid="uid://c3xsn83q5ggrb" path="res://src/ui/ui_settings/ui_settings.gd" id="1_o525x"]
+[ext_resource type="FontFile" uid="uid://c4lvqck802unr" path="res://assets/ui/fonts/Rubik/Rubik-Black.ttf" id="2_p7rd4"]
+[ext_resource type="Theme" uid="uid://pb2nv3lse3gh" path="res://assets/ui/themes/ui.tres" id="3_p7rd4"]
+[ext_resource type="Script" uid="uid://clm6xhu04fn8f" path="res://src/ui/shared/settings_slider.gd" id="4_1hwlf"]
+[ext_resource type="FontFile" uid="uid://ce6to22bwjkcm" path="res://assets/ui/fonts/Rubik/Rubik-Bold.ttf" id="4_gx6u5"]
+[ext_resource type="Script" uid="uid://d4dkdl5v3ulfv" path="res://src/ui/shared/custom_button.gd" id="5_u1y0y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7rd4"]
+bg_color = Color(0.9098039, 0.9137255, 0.91764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 10
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_h45xw"]
+font = ExtResource("2_p7rd4")
+font_size = 90
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7rd4"]
+font = ExtResource("4_gx6u5")
+font_size = 32
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="Animation" id="Animation_yflst"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0yd4y"]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666666, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_o525x"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yflst"]
+_data = {
+&"RESET": SubResource("Animation_yflst"),
+&"close": SubResource("Animation_0yd4y"),
+&"open": SubResource("Animation_o525x")
+}
+
+[node name="Settings" type="CanvasLayer" unique_id=817927899]
+layer = 60
+script = ExtResource("1_o525x")
+
+[node name="Control" type="Control" parent="." unique_id=252945358]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme = ExtResource("3_p7rd4")
+
+[node name="Background" type="PanelContainer" parent="Control" unique_id=324195836]
+custom_minimum_size = Vector2(900, 550)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -186.5
+offset_right = 250.0
+offset_bottom = 186.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7rd4")
+
+[node name="TopCenter" type="MarginContainer" parent="Control/Background" unique_id=722234751]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_top = 20
+
+[node name="Title" type="Label" parent="Control/Background/TopCenter" unique_id=827004105]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_h45xw")
+
+[node name="Content" type="Control" parent="Control/Background" unique_id=962094214]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Content" unique_id=577047554]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.5
+offset_top = -94.0
+offset_right = 298.5
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="MasterVolume" type="HBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=966387519]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="MasterVolumeSlider" type="HSlider" parent="Control/Background/Content/VBoxContainer/MasterVolume" unique_id=1613408081]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+value = 100.0
+script = ExtResource("4_1hwlf")
+
+[node name="Label" type="Label" parent="Control/Background/Content/VBoxContainer/MasterVolume" unique_id=112408442]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_p7rd4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=1065519255]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Control/Background/Content/VBoxContainer/MusicVolume" unique_id=2065360068]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+value = 100.0
+script = ExtResource("4_1hwlf")
+
+[node name="Label" type="Label" parent="Control/Background/Content/VBoxContainer/MusicVolume" unique_id=629209344]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_p7rd4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolume" type="HBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=1245781681]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="SFXVolumeSlider" type="HSlider" parent="Control/Background/Content/VBoxContainer/SFXVolume" unique_id=504143490]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+value = 100.0
+script = ExtResource("4_1hwlf")
+
+[node name="Label" type="Label" parent="Control/Background/Content/VBoxContainer/SFXVolume" unique_id=914704871]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_p7rd4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIVolume" type="HBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=2068138827]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="UIVolumeSlider" type="HSlider" parent="Control/Background/Content/VBoxContainer/UIVolume" unique_id=1248689731]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+value = 100.0
+script = ExtResource("4_1hwlf")
+
+[node name="Label" type="Label" parent="Control/Background/Content/VBoxContainer/UIVolume" unique_id=118611588]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "UI Volume"
+label_settings = SubResource("LabelSettings_p7rd4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomCenter" type="MarginContainer" parent="Control/Background" unique_id=56633411]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="CloseButton" type="Button" parent="Control/Background/BottomCenter" unique_id=856631215]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 38
+text = "Close"
+script = ExtResource("5_u1y0y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1122275003]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_yflst")
+
+[connection signal="pressed" from="Control/Background/BottomCenter/CloseButton" to="." method="close"]

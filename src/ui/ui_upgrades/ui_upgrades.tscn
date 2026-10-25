@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://j6djbv0bd407"]
+
+[ext_resource type="Script" uid="uid://bxst6ufmrqx6b" path="res://src/ui/ui_upgrades/ui_upgrades.gd" id="1_pcrtm"]
+[ext_resource type="FontFile" uid="uid://c4lvqck802unr" path="res://assets/ui/fonts/Rubik/Rubik-Black.ttf" id="2_p2awd"]
+[ext_resource type="Theme" uid="uid://pb2nv3lse3gh" path="res://assets/ui/themes/ui.tres" id="2_veotv"]
+[ext_resource type="Texture2D" uid="uid://b4e851sp7jyxo" path="res://assets/ui/general/button.svg" id="3_veotv"]
+[ext_resource type="FontFile" uid="uid://ce6to22bwjkcm" path="res://assets/ui/fonts/Rubik/Rubik-Bold.ttf" id="4_hfm7d"]
+[ext_resource type="Texture2D" uid="uid://c733sx7esaex6" path="res://assets/ui/general/button_hover.svg" id="4_v01wq"]
+[ext_resource type="Script" uid="uid://d4dkdl5v3ulfv" path="res://src/ui/shared/custom_button.gd" id="5_hfm7d"]
+[ext_resource type="Texture2D" uid="uid://d1prrwp3ojfbu" path="res://assets/ui/icons/offline.svg" id="7_8blm0"]
+[ext_resource type="PackedScene" uid="uid://b5wjd262vwy4q" path="res://src/ui/ui_upgrades/upgrade.tscn" id="7_a3jut"]
+[ext_resource type="Texture2D" uid="uid://cfrya5id8acav" path="res://assets/ui/icons/luck.svg" id="8_6rpeq"]
+[ext_resource type="Texture2D" uid="uid://bgaqq3wp3wjc6" path="res://assets/ui/icons/plus.svg" id="8_p3i56"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_veotv"]
+font = ExtResource("2_p2awd")
+font_size = 80
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v01wq"]
+font = ExtResource("4_hfm7d")
+font_size = 32
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_at20h"]
+texture = ExtResource("3_veotv")
+texture_margin_left = 14.529911
+texture_margin_top = 13.340761
+texture_margin_right = 14.054252
+texture_margin_bottom = 21.00863
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v23hs"]
+texture = ExtResource("4_v01wq")
+texture_margin_left = 15.0
+texture_margin_top = 13.0
+texture_margin_right = 14.0
+texture_margin_bottom = 21.0
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="Animation" id="Animation_8svfu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uo4wb"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_snhst"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8svfu"]
+_data = {
+&"RESET": SubResource("Animation_8svfu"),
+&"close": SubResource("Animation_uo4wb"),
+&"open": SubResource("Animation_snhst")
+}
+
+[node name="Upgrades" type="CanvasLayer" unique_id=1709629411]
+layer = 60
+script = ExtResource("1_pcrtm")
+
+[node name="Control" type="Control" parent="." unique_id=689496758]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme = ExtResource("2_veotv")
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=1398637784]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8329021, 0.83290213, 0.83290213, 1)
+
+[node name="TopCenter" type="MarginContainer" parent="Control/Background" unique_id=1369712503]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.5
+offset_right = 185.5
+offset_bottom = 115.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_top = 20
+
+[node name="Title" type="Label" parent="Control/Background/TopCenter" unique_id=1540705191]
+layout_mode = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_veotv")
+
+[node name="Content" type="Control" parent="Control/Background" unique_id=752134910]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Content" unique_id=2077003209]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -505.0
+offset_top = -195.0
+offset_right = 505.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="XPBar" type="VBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=1418239725]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="LevelProgress" type="ProgressBar" parent="Control/Background/Content/VBoxContainer/XPBar" unique_id=1682880453]
+custom_minimum_size = Vector2(500, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 40.0
+show_percentage = false
+
+[node name="LevelIndicator" type="Label" parent="Control/Background/Content/VBoxContainer/XPBar" unique_id=346024501]
+layout_mode = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_v01wq")
+horizontal_alignment = 1
+
+[node name="Upgrades" type="HBoxContainer" parent="Control/Background/Content/VBoxContainer" unique_id=634140308]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 22
+
+[node name="Luck" parent="Control/Background/Content/VBoxContainer/Upgrades" unique_id=536178081 instance=ExtResource("7_a3jut")]
+layout_mode = 2
+upgrade_name = "Luck"
+upgrade_desc = "Increase rare button spawn chance."
+upgrade_price = nan
+upgrade_icon = ExtResource("8_6rpeq")
+
+[node name="OfflineEarnings" parent="Control/Background/Content/VBoxContainer/Upgrades" unique_id=77864666 instance=ExtResource("7_a3jut")]
+layout_mode = 2
+upgrade_name = "Offline Earnings"
+upgrade_desc = "Earn more offline."
+upgrade_price = nan
+upgrade_icon = ExtResource("7_8blm0")
+
+[node name="ButtonLevel" parent="Control/Background/Content/VBoxContainer/Upgrades" unique_id=395258388 instance=ExtResource("7_a3jut")]
+layout_mode = 2
+upgrade_name = "Button Gains"
+upgrade_desc = "Increase gains!"
+upgrade_price = nan
+upgrade_icon = ExtResource("8_p3i56")
+
+[node name="Luck4" parent="Control/Background/Content/VBoxContainer/Upgrades" unique_id=2097650687 instance=ExtResource("7_a3jut")]
+layout_mode = 2
+upgrade_name = "Luck"
+upgrade_price = nan
+upgrade_icon = ExtResource("8_6rpeq")
+
+[node name="BottomCenter" type="MarginContainer" parent="Control/Background" unique_id=658972839]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -87.0
+offset_right = 34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 19
+
+[node name="CloseButton" type="Button" parent="Control/Background/BottomCenter" unique_id=741365412]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.83137256, 0.83137256, 0.83137256, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxTexture_at20h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v23hs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v23hs")
+text = "Close"
+script = ExtResource("5_hfm7d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=74871565]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8svfu")
+
+[connection signal="pressed" from="Control/Background/BottomCenter/CloseButton" to="." method="close"]

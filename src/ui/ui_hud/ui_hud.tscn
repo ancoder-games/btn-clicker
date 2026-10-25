@@ -1,0 +1,438 @@
+[gd_scene format=3 uid="uid://cqpeg4cs5ggro"]
+
+[ext_resource type="Script" uid="uid://c72xd4486q7dk" path="res://src/ui/ui_hud/ui_hud.gd" id="1_bpdxj"]
+[ext_resource type="Script" uid="uid://d4dkdl5v3ulfv" path="res://src/ui/shared/custom_button.gd" id="3_076te"]
+[ext_resource type="Texture2D" uid="uid://ctxul50i7invv" path="res://assets/ui/icons/settings.svg" id="3_udh2q"]
+[ext_resource type="Script" uid="uid://ddrw6rfp2as4k" path="res://src/ui/shared/ui_rotate_anim.gd" id="5_hhael"]
+[ext_resource type="FontFile" uid="uid://c4lvqck802unr" path="res://assets/ui/fonts/Rubik/Rubik-Black.ttf" id="7_4dm8p"]
+[ext_resource type="Texture2D" uid="uid://bkvahs080m5ok" path="res://assets/ui/icons/push_button.svg" id="8_8otwl"]
+[ext_resource type="FontFile" uid="uid://ce6to22bwjkcm" path="res://assets/ui/fonts/Rubik/Rubik-Bold.ttf" id="8_d5ccl"]
+[ext_resource type="Texture2D" uid="uid://d0lj74gu4jnko" path="res://assets/ui/icons/upgrade.png" id="8_qtkbr"]
+[ext_resource type="Theme" uid="uid://pb2nv3lse3gh" path="res://assets/ui/themes/ui.tres" id="8_raafm"]
+[ext_resource type="Texture2D" uid="uid://dwsipc4ai8xbu" path="res://assets/ui/icons/black_hole.svg" id="10_8otwl"]
+[ext_resource type="Script" uid="uid://c4d1ysl8xoy0q" path="res://src/ui/shared/ui_scale_anim.gd" id="11_8otwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o143"]
+bg_color = Color(1, 0.31, 0.31, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_u15cb"]
+font_size = 28
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpdxj"]
+font_size = 24
+outline_size = 10
+outline_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_raafm"]
+font_size = 28
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 10
+stacked_outline_0/color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+stacked_shadow_0/offset = Vector2(0, 3)
+stacked_shadow_0/color = Color(0.10524041, 0.10524041, 0.1052404, 1)
+stacked_shadow_0/outline_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0qr6"]
+font_size = 38
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+stacked_shadow_0/offset = Vector2(0, 4)
+stacked_shadow_0/color = Color(0.10524041, 0.10524041, 0.1052404, 1)
+stacked_shadow_0/outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_cio14"]
+font = ExtResource("7_4dm8p")
+font_size = 86
+font_color = Color(0, 0, 0, 1)
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(1, 1, 1, 1)
+stacked_shadow_0/offset = Vector2(0, 5)
+stacked_shadow_0/color = Color(0, 0, 0, 0.5)
+stacked_shadow_0/outline_size = 20
+
+[sub_resource type="Animation" id="Animation_qtkbr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bpdxj"]
+resource_name = "changed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtkbr"]
+_data = {
+&"RESET": SubResource("Animation_qtkbr"),
+&"changed": SubResource("Animation_bpdxj")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_8otwl"]
+font = ExtResource("8_d5ccl")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+
+[node name="HUD" type="CanvasLayer" unique_id=344802277]
+layer = 50
+script = ExtResource("1_bpdxj")
+
+[node name="Control" type="Control" parent="." unique_id=687712094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("8_raafm")
+
+[node name="TopRight" type="MarginContainer" parent="Control" unique_id=180424472]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="SettingsButton" type="Button" parent="Control/TopRight" unique_id=1809197258]
+custom_minimum_size = Vector2(78, 77)
+custom_maximum_size = Vector2(78, 77)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("3_076te")
+
+[node name="Gear" type="TextureRect" parent="Control/TopRight/SettingsButton" unique_id=1444776110]
+modulate = Color(0.827451, 0.8352941, 0.84313726, 1)
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -18.0
+offset_right = 16.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("3_udh2q")
+script = ExtResource("5_hhael")
+duration = 0.2
+easing = 2
+
+[node name="BottomCenter" type="MarginContainer" parent="Control" unique_id=48227211]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -190.0
+offset_right = 229.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/BottomCenter" unique_id=1202515563]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="Upgrades" type="VBoxContainer" parent="Control/BottomCenter/HBoxContainer" unique_id=1332892879]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/separation = 4
+
+[node name="UpgradeButton" type="Button" parent="Control/BottomCenter/HBoxContainer/Upgrades" unique_id=974635163]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+script = ExtResource("3_076te")
+
+[node name="Upgrade" type="TextureRect" parent="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton" unique_id=1979669751]
+modulate = Color(0.827451, 0.8352941, 0.84313726, 1)
+custom_minimum_size = Vector2(84, 54)
+custom_maximum_size = Vector2(84, 54)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -18.0
+offset_right = 16.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("8_qtkbr")
+script = ExtResource("11_8otwl")
+duration = 0.2
+
+[node name="UpgradeIndicator" type="Panel" parent="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton" unique_id=671936222]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = -4.0
+offset_right = 2.0
+offset_bottom = 26.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_0o143")
+
+[node name="Label" type="Label" parent="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton/UpgradeIndicator" unique_id=1883110535]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "!"
+label_settings = SubResource("LabelSettings_u15cb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Filler" type="Label" parent="Control/BottomCenter/HBoxContainer/Upgrades" unique_id=388420309]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_bpdxj")
+horizontal_alignment = 1
+
+[node name="Detach" type="Control" parent="Control/BottomCenter/HBoxContainer/Upgrades" unique_id=385220406]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Control/BottomCenter/HBoxContainer/Upgrades/Detach" unique_id=161864869]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -29.0
+offset_right = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_raafm")
+horizontal_alignment = 1
+
+[node name="Shop" type="VBoxContainer" parent="Control/BottomCenter/HBoxContainer" unique_id=488095683]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/separation = 4
+
+[node name="ShopButton" type="Button" parent="Control/BottomCenter/HBoxContainer/Shop" unique_id=509377120]
+custom_minimum_size = Vector2(120, 120)
+custom_maximum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+script = ExtResource("3_076te")
+
+[node name="Shop" type="TextureRect" parent="Control/BottomCenter/HBoxContainer/Shop/ShopButton" unique_id=1933623871]
+modulate = Color(0.9098039, 0.9137255, 0.91764706, 1)
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -18.0
+offset_right = 16.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("8_8otwl")
+script = ExtResource("11_8otwl")
+duration = 0.2
+
+[node name="Label" type="Label" parent="Control/BottomCenter/HBoxContainer/Shop" unique_id=195148524]
+layout_mode = 2
+text = "Shop"
+label_settings = SubResource("LabelSettings_d0qr6")
+horizontal_alignment = 1
+
+[node name="Ascend" type="VBoxContainer" parent="Control/BottomCenter/HBoxContainer" unique_id=23631264]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/separation = 4
+
+[node name="AscendButton" type="Button" parent="Control/BottomCenter/HBoxContainer/Ascend" unique_id=1302121768]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+script = ExtResource("3_076te")
+
+[node name="Ascend" type="TextureRect" parent="Control/BottomCenter/HBoxContainer/Ascend/AscendButton" unique_id=1702203076]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -18.0
+offset_right = 16.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("10_8otwl")
+script = ExtResource("11_8otwl")
+duration = 0.2
+
+[node name="Indicator" type="Panel" parent="Control/BottomCenter/HBoxContainer/Ascend/AscendButton" unique_id=267288068]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = -4.0
+offset_right = 2.0
+offset_bottom = 26.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_0o143")
+
+[node name="Label" type="Label" parent="Control/BottomCenter/HBoxContainer/Ascend/AscendButton/Indicator" unique_id=167440476]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "!"
+label_settings = SubResource("LabelSettings_u15cb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control/BottomCenter/HBoxContainer/Ascend" unique_id=1126039690]
+layout_mode = 2
+text = "Ascend"
+label_settings = SubResource("LabelSettings_raafm")
+horizontal_alignment = 1
+
+[node name="TopCenter" type="MarginContainer" parent="Control" unique_id=510932784]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TopCenter" unique_id=1976265555]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="ClicksDisplay" type="Label" parent="Control/TopCenter/VBoxContainer" unique_id=387543475]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+text = "0"
+label_settings = SubResource("LabelSettings_cio14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClicksDisplayAnim" type="AnimationPlayer" parent="Control/TopCenter/VBoxContainer/ClicksDisplay" unique_id=1856446284]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_qtkbr")
+
+[node name="CPSDisplay" type="Label" parent="Control/TopCenter/VBoxContainer" unique_id=287639061]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+text = "0 / Sec"
+label_settings = SubResource("LabelSettings_8otwl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Control/TopRight/SettingsButton" to="Control/TopRight/SettingsButton/Gear" method="play"]
+[connection signal="mouse_exited" from="Control/TopRight/SettingsButton" to="Control/TopRight/SettingsButton/Gear" method="play_reverse"]
+[connection signal="pressed" from="Control/TopRight/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton" to="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton/Upgrade" method="play"]
+[connection signal="mouse_exited" from="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton" to="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton/Upgrade" method="play_reverse"]
+[connection signal="pressed" from="Control/BottomCenter/HBoxContainer/Upgrades/UpgradeButton" to="." method="_on_upgrade_pressed"]
+[connection signal="mouse_entered" from="Control/BottomCenter/HBoxContainer/Shop/ShopButton" to="Control/BottomCenter/HBoxContainer/Shop/ShopButton/Shop" method="play"]
+[connection signal="mouse_exited" from="Control/BottomCenter/HBoxContainer/Shop/ShopButton" to="Control/BottomCenter/HBoxContainer/Shop/ShopButton/Shop" method="play_reverse"]
+[connection signal="pressed" from="Control/BottomCenter/HBoxContainer/Shop/ShopButton" to="." method="_on_shop_pressed"]
+[connection signal="mouse_entered" from="Control/BottomCenter/HBoxContainer/Ascend/AscendButton" to="Control/BottomCenter/HBoxContainer/Ascend/AscendButton/Ascend" method="play"]
+[connection signal="mouse_exited" from="Control/BottomCenter/HBoxContainer/Ascend/AscendButton" to="Control/BottomCenter/HBoxContainer/Ascend/AscendButton/Ascend" method="play_reverse"]
+[connection signal="pressed" from="Control/BottomCenter/HBoxContainer/Ascend/AscendButton" to="." method="_on_ascend_pressed"]

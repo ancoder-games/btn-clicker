@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cjlnjpfaqsfdw"]
+
+[ext_resource type="Script" uid="uid://bfl6kyb54fw2n" path="res://src/core/autoloads/ui_service/ui_service.gd" id="1_t1jeu"]
+[ext_resource type="AudioStream" uid="uid://bhcru4vc35x0i" path="res://assets/audio/sfx/settings_hover.wav" id="2_5ehq5"]
+[ext_resource type="AudioStream" uid="uid://cnyiqri3hcirv" path="res://assets/audio/sfx/settings_pressed.wav" id="3_xk0hx"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qf3ml"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("2_5ehq5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v4ty0"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("3_xk0hx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ehq5"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("2_5ehq5")
+
+[node name="UIService" type="Node" unique_id=415326969]
+script = ExtResource("1_t1jeu")
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=264677759]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_qf3ml")
+volume_db = -17.0
+pitch_scale = 0.5
+bus = &"UI"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=1421075349]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_v4ty0")
+volume_db = 5.0
+bus = &"UI"
+
+[node name="SliderSound" type="AudioStreamPlayer" parent="." unique_id=1397124471]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_5ehq5")
+volume_db = -10.0
+pitch_scale = 0.5
+bus = &"UI"

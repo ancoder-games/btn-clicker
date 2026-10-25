@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cawdlct1o0i5q"]
+
+[ext_resource type="FontFile" uid="uid://c4lvqck802unr" path="res://assets/ui/fonts/Rubik/Rubik-Black.ttf" id="1_1ev24"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkbas"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="Curve" id="Curve_xysjt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5488722, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7uoia"]
+curve = SubResource("Curve_xysjt")
+
+[sub_resource type="Curve" id="Curve_a8dpi"]
+_limits = [10.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10.357143), 0.0, 0.0, 0, 0, Vector2(1e-05, 10), 0.0, 0.0, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qkbas"]
+curve = SubResource("Curve_a8dpi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a8dpi"]
+emission_shape_offset = Vector3(0, 0.3, 0)
+emission_shape_scale = Vector3(1, 0.5, 1)
+gravity = Vector3(0, 2, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+linear_accel_curve = SubResource("CurveTexture_qkbas")
+alpha_curve = SubResource("CurveTexture_7uoia")
+
+[sub_resource type="TextMesh" id="TextMesh_skvo2"]
+text = "+$10"
+font = ExtResource("1_1ev24")
+font_size = 38
+depth = 0.001
+
+[node name="ValueParticle" type="GPUParticles3D" unique_id=762052926]
+material_override = SubResource("StandardMaterial3D_qkbas")
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_a8dpi")
+draw_pass_1 = SubResource("TextMesh_skvo2")

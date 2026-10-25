@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bbjk58jqke0s1"]
+
+[ext_resource type="Shader" uid="uid://rq51a3ees6id" path="res://src/shaders/vignette.gdshader" id="1_ottot"]
+
+[resource]
+shader = ExtResource("1_ottot")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.50000002375
+shader_parameter/vignette_rgb = Color(1, 0.91466665, 0.36, 1)
+shader_parameter/scrolling_rgb = false
+shader_parameter/scroll_speed = 0.250000011875
+shader_parameter/rgb_saturation = 0.50000002375
+shader_parameter/rgb_value = 1.0
+shader_parameter/pulse = true
+shader_parameter/pulse_speed = 4.00000019
+shader_parameter/pulse_strength = 0.5
+shader_parameter/pulse_size = 0.3

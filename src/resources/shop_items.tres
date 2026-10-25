@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ShopItemCatalog" format=3 uid="uid://bt3j335imx614"]
+
+[ext_resource type="Script" uid="uid://dxnsyq4yjvppj" path="res://src/gameplay/shop_item/shop_item.gd" id="1_1vh3y"]
+[ext_resource type="Script" uid="uid://lcquak8mhm02" path="res://src/gameplay/shop_item/shop_item_catalog.gd" id="2_5imto"]
+
+[resource]
+script = ExtResource("2_5imto")

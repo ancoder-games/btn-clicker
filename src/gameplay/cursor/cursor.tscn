@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://coj6t67du08bp"]
+
+[ext_resource type="PackedScene" uid="uid://beqyp4idkvtqv" path="res://assets/models/cursor.blend" id="1_t7tfr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7tfr"]
+blend_mode = 4
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+
+[node name="Cursor" type="Node3D" unique_id=1807599653]
+
+[node name="Model" parent="." unique_id=464619853 instance=ExtResource("1_t7tfr")]
+
+[node name="Normal" parent="Model" index="0" unique_id=1483362115]
+material_overlay = SubResource("StandardMaterial3D_t7tfr")
+
+[node name="Hand" parent="Model" index="1" unique_id=2046576683]
+visible = false
+material_overlay = SubResource("StandardMaterial3D_t7tfr")
+
+[editable path="Model"]

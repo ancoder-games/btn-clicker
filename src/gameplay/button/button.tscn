@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://rqkysldhqkag"]
+
+[ext_resource type="Script" uid="uid://cxeh4b3bpj8ew" path="res://src/gameplay/button/button.gd" id="1_bhfnc"]
+[ext_resource type="PackedScene" uid="uid://cmdl1qm7wnwfg" path="res://assets/models/button.blend" id="1_xdea5"]
+[ext_resource type="Shader" uid="uid://c830bgty1brly" path="res://src/shaders/stylized.gdshader" id="2_4a8r5"]
+[ext_resource type="Material" uid="uid://cmqldrhlcq5me" path="res://assets/materials/button/normal_button.tres" id="3_skvo2"]
+[ext_resource type="Texture2D" uid="uid://bx24neeio7tng" path="res://assets/textures/circles.png" id="3_ucdeh"]
+[ext_resource type="AudioStream" uid="uid://bh7prgi8g8ufb" path="res://assets/audio/sfx/button_clicked.wav" id="5_0th46"]
+[ext_resource type="PackedScene" uid="uid://cawdlct1o0i5q" path="res://src/gameplay/button/value_particle.tscn" id="7_a8dpi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouf8a"]
+blend_mode = 4
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ucdeh"]
+render_priority = 0
+shader = ExtResource("2_4a8r5")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_affect = 0.0
+shader_parameter/use_stepped = true
+shader_parameter/steps = 4.0
+shader_parameter/step_smoothness = 0.20000000298024
+shader_parameter/shadow_tint = Color(0.23248088, 0.23248091, 0.23248091, 1)
+shader_parameter/shadow_tint_amount = 1.0
+shader_parameter/specular = 0.10000000149012
+shader_parameter/normal_strength = 0.0
+shader_parameter/use_rim = true
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_amount = 2.0
+shader_parameter/rim_smoothness = 0.2
+shader_parameter/rim_mask_shadow = 1.0
+shader_parameter/rim_blend = 1.0
+shader_parameter/use_pattern = true
+shader_parameter/pattern_texture = ExtResource("3_ucdeh")
+shader_parameter/pattern_uv_mode = 2
+shader_parameter/pattern_tiling = 32.0
+shader_parameter/pattern_amount = 0.5
+shader_parameter/pattern_smoothness = 0.5
+shader_parameter/pattern_blend = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h45xw"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="Animation" id="Animation_bhfnc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonMesh/Button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonMesh/Base:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ClickSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ucdeh"]
+resource_name = "press"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonMesh/Button:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999994, 0.3, 0.39999998),
+"transitions": PackedFloat32Array(1, -0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.05, 1.5, 1.05), Vector3(1, 0.2, 1), Vector3(1, 1.5, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonMesh/Base:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, -0.5, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ClickSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhfnc"]
+_data = {
+&"RESET": SubResource("Animation_bhfnc"),
+&"press": SubResource("Animation_ucdeh")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_abgu2"]
+random_pitch = 1.3348398
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("5_0th46")
+
+[node name="Button" type="Node3D" unique_id=739470467 node_paths=PackedStringArray("button_mesh", "base_mesh")]
+script = ExtResource("1_bhfnc")
+material = ExtResource("3_skvo2")
+button_mesh = NodePath("ButtonMesh/Button")
+base_mesh = NodePath("ButtonMesh/Base")
+
+[node name="ButtonMesh" parent="." unique_id=820031506 instance=ExtResource("1_xdea5")]
+
+[node name="Button" parent="ButtonMesh" index="0" unique_id=278779949]
+material_override = ExtResource("3_skvo2")
+
+[node name="Base" parent="ButtonMesh" index="1" unique_id=2026096214]
+material_overlay = SubResource("StandardMaterial3D_ouf8a")
+surface_material_override/0 = SubResource("ShaderMaterial_ucdeh")
+
+[node name="ClickArea" type="Area3D" parent="." unique_id=673102611]
+unique_name_in_owner = true
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickArea" unique_id=1471465618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37255907, 0)
+shape = SubResource("BoxShape3D_h45xw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1706497180]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_bhfnc")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=662490243]
+stream = SubResource("AudioStreamRandomizer_abgu2")
+volume_db = -25.0
+bus = &"SFX"
+
+[node name="ValueParticle" parent="." unique_id=762052926 instance=ExtResource("7_a8dpi")]
+
+[editable path="ButtonMesh"]

@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://7fi66yarpn82"]
+
+[ext_resource type="Shader" uid="uid://c4gv8x74pxgwt" path="res://src/shaders/stylized_rgb.gdshader" id="1_8xdxa"]
+[ext_resource type="Texture2D" uid="uid://bx24neeio7tng" path="res://assets/textures/circles.png" id="2_daqgu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8xdxa")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_affect = 0.0
+shader_parameter/use_rainbow = true
+shader_parameter/rainbow_speed = 0.5000000074506
+shader_parameter/rainbow_saturation = 0.70000001043084
+shader_parameter/rainbow_value = 1.0
+shader_parameter/rainbow_amount = 1.0
+shader_parameter/use_stepped = true
+shader_parameter/steps = 15.0
+shader_parameter/step_smoothness = 0.3
+shader_parameter/shadow_tint = Color(0.2673042, 0.26730424, 0.2673042, 1)
+shader_parameter/shadow_tint_amount = 0.4
+shader_parameter/specular = 0.0
+shader_parameter/normal_strength = 0.0
+shader_parameter/use_rim = false
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_amount = 2.0
+shader_parameter/rim_smoothness = 0.2
+shader_parameter/rim_mask_shadow = 1.0
+shader_parameter/rim_blend = 1.0
+shader_parameter/use_pattern = true
+shader_parameter/pattern_texture = ExtResource("2_daqgu")
+shader_parameter/pattern_uv_mode = 2
+shader_parameter/pattern_tiling = 32.0
+shader_parameter/pattern_amount = 0.5
+shader_parameter/pattern_smoothness = 0.5
+shader_parameter/pattern_blend = 0.2

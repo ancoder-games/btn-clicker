@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://b5wjd262vwy4q"]
+
+[ext_resource type="Script" uid="uid://be3g0ndjaa8fu" path="res://src/ui/ui_upgrades/upgrade.gd" id="1_8svfu"]
+[ext_resource type="Theme" uid="uid://pb2nv3lse3gh" path="res://assets/ui/themes/ui.tres" id="2_veotv"]
+[ext_resource type="Texture2D" uid="uid://bbp08sr18q16i" path="res://assets/ui/icons/missing.svg" id="3_45t4c"]
+[ext_resource type="FontFile" uid="uid://ce6to22bwjkcm" path="res://assets/ui/fonts/Rubik/Rubik-Bold.ttf" id="4_hfm7d"]
+[ext_resource type="Script" uid="uid://d4dkdl5v3ulfv" path="res://src/ui/shared/custom_button.gd" id="5_fh2j7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v01wq"]
+bg_color = Color(0.83137256, 0.83137256, 0.83137256, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.2, 0.2, 0.2, 1)
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 1
+shadow_offset = Vector2(3, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hkaq"]
+line_spacing = -15.0
+font = ExtResource("4_hfm7d")
+font_size = 36
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhp1i"]
+line_spacing = -5.0
+font = ExtResource("4_hfm7d")
+font_size = 18
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_45t4c"]
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Upgrade" type="PanelContainer" unique_id=536178081]
+custom_minimum_size = Vector2(220, 260)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -120.0
+offset_right = 100.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_veotv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v01wq")
+script = ExtResource("1_8svfu")
+upgrade_price = nan
+upgrade_icon = ExtResource("3_45t4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=205608192]
+layout_mode = 2
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_bottom = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=465849272]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="UpgradeIcon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1168734573]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 75)
+layout_mode = 2
+texture = ExtResource("3_45t4c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1198528748]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="UpgradeName" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=968953618]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+text = "Broken"
+label_settings = SubResource("LabelSettings_8hkaq")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="UpgradeDesc" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1362918658]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+custom_maximum_size = Vector2(190, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Description"
+label_settings = SubResource("LabelSettings_dhp1i")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="UpgradeStats" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=857681802]
+layout_mode = 2
+text = "0.0x  🡆  0.0x"
+label_settings = SubResource("LabelSettings_45t4c")
+horizontal_alignment = 1
+
+[node name="Upgrade" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1595857258]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 18
+text = "$NaN"
+script = ExtResource("5_fh2j7")

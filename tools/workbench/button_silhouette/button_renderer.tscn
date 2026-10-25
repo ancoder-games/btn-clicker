@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b5ei0j78krd7x"]
+
+[ext_resource type="Script" uid="uid://b12uwl1a33aej" path="res://tools/renderer/renderer.gd" id="1_7psyt"]
+[ext_resource type="PackedScene" uid="uid://rqkysldhqkag" path="res://src/gameplay/button/button.tscn" id="2_t3e38"]
+
+[sub_resource type="Environment" id="Environment_cmgnq"]
+background_mode = 1
+background_color = Color(0.86036915, 0.8603692, 0.8603693, 1)
+ambient_light_source = 2
+ambient_light_energy = 0.0
+adjustment_enabled = true
+adjustment_contrast = 0.8
+adjustment_saturation = 1.2
+
+[node name="ButtonRenderer" type="SubViewport" unique_id=1796257787]
+transparent_bg = true
+msaa_2d = 3
+msaa_3d = 3
+size = Vector2i(256, 256)
+script = ExtResource("1_7psyt")
+output_path = "res://tools/workbench/button_silhouette/output/button.png"
+metadata/_custom_type_script = "uid://b12uwl1a33aej"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=396006142]
+environment = SubResource("Environment_cmgnq")
+
+[node name="Button" parent="." unique_id=739470467 instance=ExtResource("2_t3e38")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1617810190]
+transform = Transform3D(-1, 2.990035e-08, -8.2150535e-08, 0, 0.9396926, 0.34202012, 8.742278e-08, 0.34202012, -0.9396926, 0, 1.9566886, -4.7412987)
+projection = 1
+size = 3.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1554183914]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
+shadow_enabled = true

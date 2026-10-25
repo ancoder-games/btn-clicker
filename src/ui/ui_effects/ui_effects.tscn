@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bnbe2dvhy5t15"]
+
+[ext_resource type="Script" uid="uid://di5sxwuovth4y" path="res://src/ui/ui_effects/ui_effects.gd" id="1_gjjr0"]
+[ext_resource type="Material" uid="uid://b6olrpf835n7u" path="res://assets/materials/effects/rgb_vignette.tres" id="2_gjjr0"]
+
+[node name="Effects" type="CanvasLayer" unique_id=1443988642]
+script = ExtResource("1_gjjr0")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=1799070066]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("2_gjjr0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

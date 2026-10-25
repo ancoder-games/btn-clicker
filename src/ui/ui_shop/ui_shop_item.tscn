@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bwsv8qmkbmui2"]
+
+[ext_resource type="Theme" uid="uid://pb2nv3lse3gh" path="res://assets/ui/themes/ui.tres" id="1_xtt35"]
+[ext_resource type="Script" uid="uid://bbh4iciml7hc5" path="res://src/ui/ui_shop/ui_shop_item.gd" id="2_xtt35"]
+[ext_resource type="Texture2D" uid="uid://bbp08sr18q16i" path="res://assets/ui/icons/missing.svg" id="3_ygvgw"]
+[ext_resource type="FontFile" uid="uid://ce6to22bwjkcm" path="res://assets/ui/fonts/Rubik/Rubik-Bold.ttf" id="4_0j4h8"]
+[ext_resource type="Script" uid="uid://d4dkdl5v3ulfv" path="res://src/ui/shared/custom_button.gd" id="5_u0pr4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3xk7"]
+bg_color = Color(0.28, 0.28, 0.28, 0.40392157)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_14iod"]
+font_size = 32
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jpuch"]
+font = ExtResource("4_0j4h8")
+font_size = 38
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dn338"]
+font = ExtResource("4_0j4h8")
+font_size = 24
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="ShopItem" type="HBoxContainer" unique_id=1800161052]
+custom_minimum_size = Vector2(600, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -58.0
+offset_right = 300.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xtt35")
+theme_override_constants/separation = 20
+script = ExtResource("2_xtt35")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1584332853]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+texture = ExtResource("3_ygvgw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Icon" unique_id=1295809074]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b3xk7")
+
+[node name="Owned" type="Label" parent="Icon/PanelContainer" unique_id=948997426]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_14iod")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1848647199]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=1396202622]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -5
+
+[node name="ShopItemName" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1373076408]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Broken Shop Item"
+label_settings = SubResource("LabelSettings_jpuch")
+
+[node name="ShopItemDescription" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=488063964]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3 cps"
+label_settings = SubResource("LabelSettings_dn338")
+
+[node name="BuyButton" type="Button" parent="VBoxContainer2" unique_id=1723313602]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.83137256, 0.83137256, 0.83137256, 1)
+theme_override_font_sizes/font_size = 24
+text = "Buy for $100"
+script = ExtResource("5_u0pr4")

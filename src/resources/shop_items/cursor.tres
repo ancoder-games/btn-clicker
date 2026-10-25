@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://d1gbwpcscqabo"]
+
+[ext_resource type="Script" uid="uid://dxnsyq4yjvppj" path="res://src/gameplay/shop_item/shop_item.gd" id="1_heqa7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_14iod"]
+
+[resource]
+script = ExtResource("1_heqa7")
+name = "Cursor"
+desc = "A cursor that clicks."
+icon = SubResource("PlaceholderTexture2D_14iod")
+metadata/_custom_type_script = "uid://dxnsyq4yjvppj"

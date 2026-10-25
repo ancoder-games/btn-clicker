@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://cjsg74pm2sqd6"]
+
+[ext_resource type="PackedScene" uid="uid://rqkysldhqkag" path="res://src/gameplay/button/button.tscn" id="1_6t2ow"]
+[ext_resource type="Script" uid="uid://cvjn3xm3uv7d3" path="res://src/core/main/main.gd" id="1_yfg2f"]
+[ext_resource type="AudioStream" uid="uid://dm7y0dorhfpfg" path="res://assets/audio/music/sheep.ogg" id="2_5fl30"]
+[ext_resource type="PackedScene" uid="uid://de3svkyvvvhgd" path="res://src/ui/transition/transition.tscn" id="2_eijcj"]
+[ext_resource type="Environment" uid="uid://bmgw6nurh56uc" path="res://assets/environment/world.tres" id="2_qgxaa"]
+[ext_resource type="PackedScene" uid="uid://cqpeg4cs5ggro" path="res://src/ui/ui_hud/ui_hud.tscn" id="2_tif62"]
+[ext_resource type="Material" uid="uid://jwo26skgkkjy" path="res://assets/materials/particles/dust_normal.tres" id="4_2dki3"]
+[ext_resource type="PackedScene" uid="uid://b6ahmcnapvius" path="res://src/ui/ui_shop/ui_shop.tscn" id="5_fmjip"]
+[ext_resource type="PackedScene" uid="uid://xdnqt2qq16ex" path="res://src/ui/ui_settings/ui_settings.tscn" id="6_ijhwt"]
+[ext_resource type="PackedScene" uid="uid://j6djbv0bd407" path="res://src/ui/ui_upgrades/ui_upgrades.tscn" id="7_hnitr"]
+[ext_resource type="PackedScene" uid="uid://cry37n1gtx0d" path="res://src/ui/ui_ascend/ui_ascend.tscn" id="8_ahfbv"]
+[ext_resource type="PackedScene" uid="uid://bnbe2dvhy5t15" path="res://src/ui/ui_effects/ui_effects.tscn" id="12_mwd4t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tif62"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_h45xw"]
+material = SubResource("StandardMaterial3D_tif62")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Animation" id="Animation_5fl30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yfg2f"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, -20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijhwt"]
+_data = {
+&"RESET": SubResource("Animation_5fl30"),
+&"fade_in": SubResource("Animation_yfg2f")
+}
+
+[node name="Main" type="Node" unique_id=297645664]
+script = ExtResource("1_yfg2f")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1327879661]
+environment = ExtResource("2_qgxaa")
+
+[node name="Button" parent="." unique_id=739470467 instance=ExtResource("1_6t2ow")]
+unique_name_in_owner = true
+
+[node name="DustParticles" type="GPUParticles3D" parent="." unique_id=327837020]
+transform = Transform3D(-1, 2.9900345e-08, -8.2150535e-08, 0, 0.93969256, 0.3420201, 8.742278e-08, 0.3420201, -0.93969256, 7.1054274e-15, 0.24333596, 3.3344429)
+amount = 100
+lifetime = 10.0
+process_material = ExtResource("4_2dki3")
+draw_pass_1 = SubResource("QuadMesh_h45xw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2060556739]
+unique_name_in_owner = true
+transform = Transform3D(-1, 5.1643603e-08, -1.4188963e-07, 0, 0.93969256, 0.34202012, 1.509958e-07, 0.34202012, -0.93969256, 0, 1.9566886, -4.7412987)
+projection = 1
+size = 8.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=532348936]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.6961029, 0)
+
+[node name="SpecialButtons" type="Node3D" parent="." unique_id=17452294]
+unique_name_in_owner = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1916227364]
+stream = ExtResource("2_5fl30")
+volume_db = -20.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundMusic" unique_id=1694101821]
+libraries/ = SubResource("AnimationLibrary_ijhwt")
+
+[node name="UI" type="Node" parent="." unique_id=1827178997]
+
+[node name="Transition" parent="UI" unique_id=1409851161 instance=ExtResource("2_eijcj")]
+
+[node name="HUD" parent="UI" unique_id=344802277 instance=ExtResource("2_tif62")]
+
+[node name="Settings" parent="UI" unique_id=817927899 instance=ExtResource("6_ijhwt")]
+
+[node name="Upgrade" parent="UI" unique_id=1709629411 instance=ExtResource("7_hnitr")]
+
+[node name="Ascend" parent="UI" unique_id=1229343487 instance=ExtResource("8_ahfbv")]
+
+[node name="Shop" parent="UI" unique_id=718234933 instance=ExtResource("5_fmjip")]
+
+[node name="Effects" parent="UI" unique_id=1443988642 instance=ExtResource("12_mwd4t")]
+
+[node name="SpecialButtonSpawnArea" type="Control" parent="." unique_id=1216084984]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 62.0
+offset_top = -196.0
+offset_right = -62.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[connection signal="transition_finished" from="UI/Transition" to="BackgroundMusic/AnimationPlayer" method="play" binds= [&"fade_in"]]
